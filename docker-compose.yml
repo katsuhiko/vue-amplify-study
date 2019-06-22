@@ -4,10 +4,29 @@ services:
   cli:
     build: ./docker/cli
     container_name: cli
+    working_dir: /app
     volumes:
       - ./:/app
     ports:
       - 8081:8080
     stdin_open: true
     tty: true
+  app:
+    image: node:10.16
+    container_name: app
+    ports:
+      - 8080:8080
+    working_dir: /app
+    volumes:
+      - ./study/:/app
+    command: "npm run serve"
+  story:
+    image: node:10.16
+    container_name: story
+    ports:
+      - 6006:6006
+    working_dir: /app
+    volumes:
+      - ./study/:/app
+    command: "npm run storybook:serve"
 

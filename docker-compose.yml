@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  cli:
+    build: ./docker/cli
+    container_name: cli
+    volumes:
+      - ./:/app
+    stdin_open: true
+    tty: true
+

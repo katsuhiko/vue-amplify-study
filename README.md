@@ -55,6 +55,22 @@ npm install aws-amplify-vue
 ```
 
 
+## 各サイトへのアクセス
+
+- アプリ
+  - http://localhost:8080
+
+- StoryBook
+  - http://localhost:6006
+
+- vue ui
+  - http://localhost:8000
+```
+docker exec -it cli /bin/sh
+vue ui --host 0.0.0.0
+```
+
+
 ## コミット時のコメント
 
 Angular のコメントルールを参考。

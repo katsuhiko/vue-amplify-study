@@ -1,13 +1,40 @@
 # Vue Amplify Study
 
-## cli コンテナへ入る
+## インストール
+
+```
+git clone https://github.com/katsuhiko/vue-amplify-study.git
+cd vue-amplify-study
+docker run --rm -it -v $(pwd)/study:/app -w /app node:10.16 npm install
+docker-compose up -d
+```
+
+
+## 各サイトへのアクセス
+
+- アプリ
+  - http://localhost:8080
+
+- StoryBook
+  - http://localhost:6006
+
+- vue ui
+  - http://localhost:8000
+```
+docker exec -it cli /bin/sh
+vue ui --host 0.0.0.0
+```
+
+
+## プロジェクト作成
+
+- cli コンテナへ入る
 
 ```
 docker-compose up -d
 docker exec -it cli /bin/sh
 ```
 
-## プロジェクト作成
 
 - Create project 
 
@@ -52,22 +79,6 @@ vue add storybook
 ```
 npm install aws-amplify
 npm install aws-amplify-vue
-```
-
-
-## 各サイトへのアクセス
-
-- アプリ
-  - http://localhost:8080
-
-- StoryBook
-  - http://localhost:6006
-
-- vue ui
-  - http://localhost:8000
-```
-docker exec -it cli /bin/sh
-vue ui --host 0.0.0.0
 ```
 
 

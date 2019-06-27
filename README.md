@@ -82,6 +82,118 @@ npm install aws-amplify-vue
 ```
 
 
+## Amplify の設定
+
+```
+docker exec -it cli /bin/sh
+cd study
+```
+
+```
+amplify configure
+
+Follow these steps to set up access to your AWS account:
+
+Sign in to your AWS administrator account:
+https://console.aws.amazon.com/
+Press Enter to continue
+
+Specify the AWS Region
+? region:  ap-northeast-1
+Specify the username of the new IAM user:
+? user name:  amplify-study
+Complete the user creation using the AWS console
+Press Enter to continue
+
+Enter the access key of the newly created user:
+? accessKeyId:  **********
+? secretAccessKey:  ********************
+This would update/create the AWS Profile in your local machine
+? Profile Name:  default
+```
+
+```
+amplify init
+
+Note: It is recommended to run this command from the root of your app directory
+? Enter a name for the project study
+? Enter a name for the environment dev
+? Choose your default editor: Visual Studio Code
+? Choose the type of app that you're building javascript
+Please tell us about your project
+? What javascript framework are you using vue
+? Source Directory Path:  src
+? Distribution Directory Path: dist
+? Build Command:  npm run-script build
+? Start Command: npm run-script serve
+Using default provider  awscloudformation
+
+For more information on AWS Profiles, see:
+https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html
+
+? Do you want to use an AWS profile? Yes
+? Please choose the profile you want to use default
+⠼ Initializing project in the cloud...
+
+CREATE_IN_PROGRESS study-dev-20190626231405 AWS::CloudFormation::Stack Wed Jun 26 2019 23:14:08 GMT+0000 (Coordinated Universal Time) User Initiated             
+CREATE_IN_PROGRESS AuthRole                 AWS::IAM::Role             Wed Jun 26 2019 23:14:11 GMT+0000 (Coordinated Universal Time)                            
+CREATE_IN_PROGRESS DeploymentBucket         AWS::S3::Bucket            Wed Jun 26 2019 23:14:11 GMT+0000 (Coordinated Universal Time)                            
+CREATE_IN_PROGRESS UnauthRole               AWS::IAM::Role             Wed Jun 26 2019 23:14:12 GMT+0000 (Coordinated Universal Time)                            
+CREATE_IN_PROGRESS AuthRole                 AWS::IAM::Role             Wed Jun 26 2019 23:14:12 GMT+0000 (Coordinated Universal Time) Resource creation Initiated
+CREATE_IN_PROGRESS UnauthRole               AWS::IAM::Role             Wed Jun 26 2019 23:14:13 GMT+0000 (Coordinated Universal Time) Resource creation Initiated
+⠼ Initializing project in the cloud...
+
+CREATE_IN_PROGRESS DeploymentBucket AWS::S3::Bucket Wed Jun 26 2019 23:14:14 GMT+0000 (Coordinated Universal Time) Resource creation Initiated
+⠧ Initializing project in the cloud...
+
+CREATE_COMPLETE AuthRole AWS::IAM::Role Wed Jun 26 2019 23:14:32 GMT+0000 (Coordinated Universal Time) 
+⠇ Initializing project in the cloud...
+
+CREATE_COMPLETE UnauthRole               AWS::IAM::Role             Wed Jun 26 2019 23:14:33 GMT+0000 (Coordinated Universal Time) 
+CREATE_COMPLETE DeploymentBucket         AWS::S3::Bucket            Wed Jun 26 2019 23:14:34 GMT+0000 (Coordinated Universal Time) 
+CREATE_COMPLETE study-dev-20190626231405 AWS::CloudFormation::Stack Wed Jun 26 2019 23:14:37 GMT+0000 (Coordinated Universal Time) 
+✔ Successfully created initial AWS cloud resources for deployments.
+✔ Initialized provider successfully.
+Initialized your environment successfully.
+
+Your project has been successfully initialized and connected to the cloud!
+
+Some next steps:
+"amplify status" will show you what you've added already and if it's locally configured or deployed
+"amplify <category> add" will allow you to add features like user login or a backend API
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+Pro tip:
+Try "amplify add api" to create a backend API and then "amplify publish" to deploy everything
+```
+
+```
+amplify add api
+
+? Please select from one of the below mentioned services GraphQL
+? Provide API name: study
+? Choose an authorization type for the API API key
+? Do you have an annotated GraphQL schema? No
+? Do you want a guided schema creation? Yes
+? What best describes your project: Single object with fields (e.g., “Todo” with ID, name, description)
+? Do you want to edit the schema now? Yes
+Selected default editor not found in your machine. Please manually edit the file created at /app/study/amplify/backend/api/study/schema.graphql
+? Press enter to continue 
+
+GraphQL schema compiled successfully.
+Edit your schema at /app/study/amplify/backend/api/study/schema.graphql or place .graphql files in a directory at /app/study/amplify/backend/api/study/schema
+Successfully added resource study locally
+
+Some next steps:
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+```
+
+
+
+
+
 ## コミット時のコメント
 
 Angular のコメントルールを参考。

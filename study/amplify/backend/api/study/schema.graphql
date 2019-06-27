@@ -1,5 +1,8 @@
-type Todo @model {
+type StudyAttr @model
+  @key(fields: ["id", "attr_type"])
+  @key(name: "ByType", fields: ["attr_type", "attr_value"], queryField: "listStudyAttrsByType")
+{
   id: ID!
-  name: String!
-  description: String
+  attr_type: String!
+  attr_value: String
 }

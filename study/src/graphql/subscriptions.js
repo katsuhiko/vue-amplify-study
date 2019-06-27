@@ -1,27 +1,27 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = `subscription OnCreateTodo {
-  onCreateTodo {
+export const onCreateStudyAttr = `subscription OnCreateStudyAttr {
+  onCreateStudyAttr {
     id
-    name
-    description
+    attr_type
+    attr_value
   }
 }
 `;
-export const onUpdateTodo = `subscription OnUpdateTodo {
-  onUpdateTodo {
+export const onUpdateStudyAttr = `subscription OnUpdateStudyAttr {
+  onUpdateStudyAttr {
     id
-    name
-    description
+    attr_type
+    attr_value
   }
 }
 `;
-export const onDeleteTodo = `subscription OnDeleteTodo {
-  onDeleteTodo {
+export const onDeleteStudyAttr = `subscription OnDeleteStudyAttr {
+  onDeleteStudyAttr {
     id
-    name
-    description
+    attr_type
+    attr_value
   }
 }
 `;

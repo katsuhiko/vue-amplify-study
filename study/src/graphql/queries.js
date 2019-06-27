@@ -1,55 +1,55 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const getStudyAttr = `query GetStudyAttr($id: ID!, $attr_type: String!) {
-  getStudyAttr(id: $id, attr_type: $attr_type) {
+export const getStudyItem = `query GetStudyItem($id: ID!, $item_type: String!) {
+  getStudyItem(id: $id, item_type: $item_type) {
     id
-    attr_type
-    attr_value
+    item_type
+    item_value
   }
 }
 `;
-export const listStudyAttrs = `query ListStudyAttrs(
+export const listStudyItems = `query ListStudyItems(
   $id: ID
-  $attr_type: ModelStringKeyConditionInput
-  $filter: ModelStudyAttrFilterInput
+  $item_type: ModelStringKeyConditionInput
+  $filter: ModelStudyItemFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listStudyAttrs(
+  listStudyItems(
     id: $id
-    attr_type: $attr_type
+    item_type: $item_type
     filter: $filter
     limit: $limit
     nextToken: $nextToken
   ) {
     items {
       id
-      attr_type
-      attr_value
+      item_type
+      item_value
     }
     nextToken
   }
 }
 `;
-export const listStudyAttrsByType = `query ListStudyAttrsByType(
-  $attr_type: String
-  $attr_value: ModelStringKeyConditionInput
-  $filter: ModelStudyAttrFilterInput
+export const listStudyItemsByType = `query ListStudyItemsByType(
+  $item_type: String
+  $item_value: ModelStringKeyConditionInput
+  $filter: ModelStudyItemFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listStudyAttrsByType(
-    attr_type: $attr_type
-    attr_value: $attr_value
+  listStudyItemsByType(
+    item_type: $item_type
+    item_value: $item_value
     filter: $filter
     limit: $limit
     nextToken: $nextToken
   ) {
     items {
       id
-      attr_type
-      attr_value
+      item_type
+      item_value
     }
     nextToken
   }

@@ -1,8 +1,8 @@
-type StudyAttr @model
-  @key(fields: ["id", "attr_type"])
-  @key(name: "ByType", fields: ["attr_type", "attr_value"], queryField: "listStudyAttrsByType")
+type StudyItem @model
+  @key(fields: ["id", "item_type"])
+  @key(name: "ByType", fields: ["item_type", "item_value"], queryField: "listStudyItemsByType")
 {
   id: ID!
-  attr_type: String!
-  attr_value: String
+  item_type: String!
+  item_value: String
 }

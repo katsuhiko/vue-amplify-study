@@ -9,6 +9,11 @@
             "UnauthRoleName": "study-dev-20190626231405-unauthRole",
             "StackName": "study-dev-20190626231405",
             "StackId": "arn:aws:cloudformation:ap-northeast-1:769892520494:stack/study-dev-20190626231405/196d8760-9868-11e9-a026-0a73531ad5e4"
+        },
+        "categories": {
+            "auth": {
+                "study": {}
+            }
         }
     }
 }

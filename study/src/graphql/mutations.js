@@ -1,27 +1,27 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const createStudyAttr = `mutation CreateStudyAttr($input: CreateStudyAttrInput!) {
-  createStudyAttr(input: $input) {
+export const createStudyItem = `mutation CreateStudyItem($input: CreateStudyItemInput!) {
+  createStudyItem(input: $input) {
     id
-    attr_type
-    attr_value
+    item_type
+    item_value
   }
 }
 `;
-export const updateStudyAttr = `mutation UpdateStudyAttr($input: UpdateStudyAttrInput!) {
-  updateStudyAttr(input: $input) {
+export const updateStudyItem = `mutation UpdateStudyItem($input: UpdateStudyItemInput!) {
+  updateStudyItem(input: $input) {
     id
-    attr_type
-    attr_value
+    item_type
+    item_value
   }
 }
 `;
-export const deleteStudyAttr = `mutation DeleteStudyAttr($input: DeleteStudyAttrInput!) {
-  deleteStudyAttr(input: $input) {
+export const deleteStudyItem = `mutation DeleteStudyItem($input: DeleteStudyItemInput!) {
+  deleteStudyItem(input: $input) {
     id
-    attr_type
-    attr_value
+    item_type
+    item_value
   }
 }
 `;

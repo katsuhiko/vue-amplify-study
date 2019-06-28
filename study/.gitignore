@@ -33,3 +33,6 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
+
+#amplify my
+amplify/team-provider-info.json

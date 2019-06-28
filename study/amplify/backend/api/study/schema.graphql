@@ -5,5 +5,4 @@ type StudyItem @model
   id: ID!
   itemType: String!
   itemValue: String
-  itemRelation: StudyItem @connection
 }

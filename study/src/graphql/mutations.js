@@ -6,16 +6,6 @@ export const createStudyItem = `mutation CreateStudyItem($input: CreateStudyItem
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;
@@ -24,16 +14,6 @@ export const updateStudyItem = `mutation UpdateStudyItem($input: UpdateStudyItem
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;
@@ -42,16 +22,6 @@ export const deleteStudyItem = `mutation DeleteStudyItem($input: DeleteStudyItem
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;

@@ -6,16 +6,6 @@ export const onCreateStudyItem = `subscription OnCreateStudyItem {
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;
@@ -24,16 +14,6 @@ export const onUpdateStudyItem = `subscription OnUpdateStudyItem {
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;
@@ -42,16 +22,6 @@ export const onDeleteStudyItem = `subscription OnDeleteStudyItem {
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;

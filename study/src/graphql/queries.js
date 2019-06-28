@@ -6,16 +6,6 @@ export const getStudyItem = `query GetStudyItem($id: ID!, $itemType: String!) {
     id
     itemType
     itemValue
-    itemRelation {
-      id
-      itemType
-      itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
-    }
   }
 }
 `;
@@ -37,11 +27,6 @@ export const listStudyItems = `query ListStudyItems(
       id
       itemType
       itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
     }
     nextToken
   }
@@ -65,11 +50,6 @@ export const listStudyItemsByType = `query ListStudyItemsByType(
       id
       itemType
       itemValue
-      itemRelation {
-        id
-        itemType
-        itemValue
-      }
     }
     nextToken
   }

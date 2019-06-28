@@ -205,6 +205,11 @@ Command: amplify publish
 ```
 
 
+## 参考
+
+- icon一覧
+  - https://material.io/tools/icons/?style=baseline
+
 
 ## コミット時のコメント
 

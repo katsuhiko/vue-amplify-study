@@ -1,8 +1,9 @@
 type StudyItem @model
-  @key(fields: ["id", "item_type"])
-  @key(name: "ByType", fields: ["item_type", "item_value"], queryField: "listStudyItemsByType")
+  @key(fields: ["id", "itemType"])
+  @key(name: "ByType", fields: ["itemType", "itemValue"], queryField: "listStudyItemsByType")
 {
   id: ID!
-  item_type: String!
-  item_value: String
+  itemType: String!
+  itemValue: String
+  itemRelation: StudyItem @connection
 }

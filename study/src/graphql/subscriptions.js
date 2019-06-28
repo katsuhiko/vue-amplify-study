@@ -4,24 +4,54 @@
 export const onCreateStudyItem = `subscription OnCreateStudyItem {
   onCreateStudyItem {
     id
-    item_type
-    item_value
+    itemType
+    itemValue
+    itemRelation {
+      id
+      itemType
+      itemValue
+      itemRelation {
+        id
+        itemType
+        itemValue
+      }
+    }
   }
 }
 `;
 export const onUpdateStudyItem = `subscription OnUpdateStudyItem {
   onUpdateStudyItem {
     id
-    item_type
-    item_value
+    itemType
+    itemValue
+    itemRelation {
+      id
+      itemType
+      itemValue
+      itemRelation {
+        id
+        itemType
+        itemValue
+      }
+    }
   }
 }
 `;
 export const onDeleteStudyItem = `subscription OnDeleteStudyItem {
   onDeleteStudyItem {
     id
-    item_type
-    item_value
+    itemType
+    itemValue
+    itemRelation {
+      id
+      itemType
+      itemValue
+      itemRelation {
+        id
+        itemType
+        itemValue
+      }
+    }
   }
 }
 `;

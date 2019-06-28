@@ -1,6 +1,6 @@
 <script>
 export default {
-  data() {
+  data () {
     return {
       customers: [
         { id: '1', customer_name: '株式会社〇〇〇〇〇〇〇〇1' },

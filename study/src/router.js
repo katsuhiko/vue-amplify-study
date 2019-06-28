@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from './components/pages/HomePage.vue'
-import Abount from './components/pages/AboutPage.vue'
-import TaskAdd from './components/pages/TaskAddPage.vue'
+import HomePage from './components/pages/HomePage.vue'
+import AboutPage from './components/pages/AboutPage.vue'
+import EmployeeAddPage from './components/pages/EmployeeAddPage.vue'
 
 Vue.use(Router)
 
@@ -14,17 +14,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: HomePage
+    },
+    {
+      path: '/employee-add',
+      name: 'employee-add',
+      component: EmployeeAddPage
     },
     {
       path: '/about',
       name: 'about',
-      component: Abount
-    },
-    {
-      path: '/task-add',
-      name: 'task-add',
-      component: TaskAdd
+      component: AboutPage
     }
   ]
 })

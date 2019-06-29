@@ -46,10 +46,10 @@ export default {
                 <v-layout wrap>
                   <v-spacer></v-spacer>
                   <v-flex xs12 sm4 md4 lg3 xl3>
-                    <v-btn @click="onCancel" dark block><v-icon dark left>remove_circle</v-icon>キャンセル</v-btn>
+                    <v-btn @click="onCancel" block><v-icon left>close</v-icon>キャンセル</v-btn>
                   </v-flex>
                   <v-flex xs12 sm4 md4 lg3 xl3>
-                    <v-btn @click="onSave" color="primary" dark block><v-icon dark left>check_circle</v-icon>保存</v-btn>
+                    <v-btn @click="onSave" color="primary" block><v-icon dark left>check</v-icon>保存</v-btn>
                   </v-flex>
                 </v-layout>
               </v-container>

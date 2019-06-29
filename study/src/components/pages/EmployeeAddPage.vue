@@ -10,6 +10,7 @@ export default {
   data () {
     return {
       employee: {
+        id: '',
         employee_no: '',
         employee_name: ''
       }
@@ -17,29 +18,32 @@ export default {
   },
   methods: {
     onCancel (employee) {
-      console.log(employee)
+      this.$router.push({ path: '/employee-list' })
     },
     async onSave (employee) {
-      const id = this.$uuid.v4()
+      employee.id = this.$uuid.v4()
       const employeeObject = {
-        id: id,
+        id: employee.id,
         itemType: 'employee_object',
         itemValue: JSON.stringify(employee)
       }
       const employeeNo = {
-        id: id,
+        id: employee.id,
         itemType: 'employee_no',
         itemValue: employee.employee_no
       }
       const employeeName = {
-        id: id,
+        id: employee.id,
         itemType: 'employee_name',
         itemValue: employee.employee_name
       }
       await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
       await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
       await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
+
       alert('登録しました。')
+
+      this.$router.push({ path: '/employee-list' })
     }
   }
 }

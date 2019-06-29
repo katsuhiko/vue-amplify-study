@@ -12,11 +12,11 @@ export default {
       employees: []
     }
   },
-  created: async function () {
+  async created () {
     await this.loadEmployees()
   },
   methods: {
-    loadEmployees: async function () {
+    async loadEmployees () {
       const res = await API.graphql(graphqlOperation(listStudyItemsByType, {
         itemType: 'employee_object'
       }))
@@ -25,11 +25,14 @@ export default {
       res.data.listStudyItemsByType.items.forEach(item => {
         this.employees.push(JSON.parse(item.itemValue))
       });
+    },
+    goAdd () {
+      this.$router.push({ path: '/employee-add' })
     }
   }
 }
 </script>
 
 <template>
-  <employee-list-template :employees="employees"></employee-list-template>
+  <employee-list-template :employees="employees" @add="goAdd"></employee-list-template>
 </template>

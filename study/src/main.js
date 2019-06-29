@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
-import router from './router'
+import { router, checkUser } from './router'
 import store from './store'
 import './registerServiceWorker'
 
@@ -20,6 +20,11 @@ new Vue({
   store,
   components: {
     ...components
+  },
+  watch: {
+    $route: function (to, from) {
+      checkUser()
+    }
   },
   render: h => h(App)
 }).$mount('#app')

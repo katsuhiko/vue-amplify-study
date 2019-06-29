@@ -14,11 +14,14 @@ Vue.use(AmplifyPlugin, AmplifyModules)
 
 let user
 
-getUser().then((user, error) => {
-  if (!user) {
-    router.push({ path: '/login' })
-  }
-})
+export const checkUser = () => {
+  getUser().then((user, error) => {
+    if (!user) {
+      router.push({ path: '/login' })
+    }
+  })
+}
+checkUser()
 
 function getUser () {
   return Vue.prototype.$Amplify.Auth.currentAuthenticatedUser().then((data) => {
@@ -40,7 +43,7 @@ AmplifyEventBus.$on('authState', async (state) => {
   }
 })
 
-const router = new Router({
+export const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -82,5 +85,3 @@ router.beforeResolve(async (to, from, next) => {
   }
   return next()
 })
-
-export default router

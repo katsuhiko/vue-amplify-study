@@ -1,6 +1,6 @@
 <script>
 import EmployeeAddTemplate from '../templates/EmployeeAddTemplate.vue'
-import { API, graphqlOperation} from 'aws-amplify'
+import { API, graphqlOperation } from 'aws-amplify'
 import { createStudyItem } from '../../graphql/mutations'
 
 export default {
@@ -28,15 +28,15 @@ export default {
       const employeeNo = {
         id: id,
         itemType: 'employee_no',
-        itemValue:  employee.employee_no
+        itemValue: employee.employee_no
       }
       const employeeName = {
         id: id,
         itemType: 'employee_name',
-        itemValue:  employee.employee_name
+        itemValue: employee.employee_name
       }
-      await API.graphql(graphqlOperation(createStudyItem, {input: employeeNo}))
-      await API.graphql(graphqlOperation(createStudyItem, {input: employeeName}))
+      await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
+      await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
       alert('登録しました。')
     }
   }

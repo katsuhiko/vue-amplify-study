@@ -5,26 +5,80 @@ import HomePage from './components/pages/HomePage.vue'
 import AboutPage from './components/pages/AboutPage.vue'
 import EmployeeAddPage from './components/pages/EmployeeAddPage.vue'
 
-Vue.use(Router)
+import { components, AmplifyEventBus, AmplifyPlugin } from 'aws-amplify-vue'
+import Amplify, * as AmplifyModules from 'aws-amplify'
 
-export default new Router({
+Vue.use(Router)
+Vue.use(AmplifyPlugin, AmplifyModules)
+
+let user
+getUser().then((user, error) => {
+  if (!user) {
+    router.push({ path: '/login' })
+  }
+})
+
+function getUser() {
+  return Vue.prototype.$Amplify.Auth.currentAuthenticatedUser().then((data) => {
+    if (data && data.signInUserSession) {
+      return data
+    }
+  }).catch((e) => {
+    return null
+  });
+}
+
+AmplifyEventBus.$on('authState', async (state) => {
+  if (state === 'signedOut') {
+    user = null
+    router.push({ path: '/auth' })
+  } else if (state === 'signedIn') {
+    user = await getUser()
+    router.push({ path: '/login' })
+  }
+})
+
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'HomePage',
       component: HomePage
     },
     {
       path: '/employee-add',
-      name: 'employee-add',
+      name: 'EmployeeAddPage',
       component: EmployeeAddPage
     },
     {
       path: '/about',
-      name: 'about',
+      name: 'AboutPage',
       component: AboutPage
+    },
+    {
+      path: '/login',
+      name: 'Authenticator',
+      component: components.Authenticator
     }
   ]
 })
+
+router.beforeResolve(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    user = await getUser();
+    if (!user) {
+      return next({
+        path: '/auth',
+        query: {
+          redirect: to.fullPath,
+        }
+      });
+    }
+    return next()
+  }
+  return next()
+})
+
+export default router

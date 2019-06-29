@@ -1,7 +1,7 @@
 <script>
 import EmployeeAddTemplate from '@/components/templates/EmployeeAddTemplate.vue'
 import { API, graphqlOperation } from 'aws-amplify'
-import { createStudyItem, updateStudyItem } from '@/graphql/mutations'
+import { createStudyItem, updateStudyItem, deleteStudyItem } from '@/graphql/mutations'
 import { getStudyItem } from '@/graphql/queries'
 
 export default {
@@ -33,9 +33,6 @@ export default {
       console.log(res)
 
       this.employee = JSON.parse(res.data.getStudyItem.itemValue)
-    },
-    onCancel (employee) {
-      this.$router.push({ path: '/employees' })
     },
     async onSave (employee) {
       let createMode = false
@@ -73,11 +70,36 @@ export default {
       alert('保存しました。')
 
       this.$router.push({ path: '/employees' })
+    },
+    onCancel (employee) {
+      this.$router.push({ path: '/employees' })
+    },
+    async onDelete (employee) {
+      const employeeObject = {
+        id: employee.id,
+        itemType: 'employee_object'
+      }
+      const employeeNo = {
+        id: employee.id,
+        itemType: 'employee_no'
+      }
+      const employeeName = {
+        id: employee.id,
+        itemType: 'employee_name'
+      }
+
+      await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeObject }))
+      await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeNo }))
+      await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeName }))
+
+      alert('削除しました。')
+
+      this.$router.push({ path: '/employees' })
     }
   }
 }
 </script>
 
 <template>
-  <employee-add-template v-model="employee" @save="onSave" @cancel="onCancel"></employee-add-template>
+  <employee-add-template v-model="employee" @save="onSave" @cancel="onCancel" @delete="onDelete"></employee-add-template>
 </template>

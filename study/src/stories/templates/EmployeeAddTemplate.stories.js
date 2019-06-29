@@ -7,10 +7,11 @@ storiesOf('templates/employee-add-template', module)
   .addDecorator(layout)
   .add('テンプレート', () => ({
     components: { EmployeeAddTemplate },
-    template: `<employee-add-template v-model="employee" @save="onSave" @cancel="onCancel"></employee-add-template>`,
+    template: `<employee-add-template v-model="employee" @save="onSave" @cancel="onCancel" @delete="onDelete"></employee-add-template>`,
     data () {
       return {
         employee: {
+          id: '',
           employee_no: '',
           employee_name: ''
         }
@@ -18,6 +19,25 @@ storiesOf('templates/employee-add-template', module)
     },
     methods: {
       onSave: action('保存ボタンがクリックされました。'),
-      onCancel: action('キャンセルボタンがクリックされました。')
+      onCancel: action('キャンセルボタンがクリックされました。'),
+      onDelete: action('削除ボタンがクリックされました。')
+    }
+  }))
+  .add('テンプレート編集', () => ({
+    components: { EmployeeAddTemplate },
+    template: `<employee-add-template v-model="employee" @save="onSave" @cancel="onCancel" @delete="onDelete"></employee-add-template>`,
+    data () {
+      return {
+        employee: {
+          id: 'EMP1',
+          employee_no: '1234',
+          employee_name: '広島太郎'
+        }
+      }
+    },
+    methods: {
+      onSave: action('保存ボタンがクリックされました。'),
+      onCancel: action('キャンセルボタンがクリックされました。'),
+      onDelete: action('削除ボタンがクリックされました。')
     }
   }))

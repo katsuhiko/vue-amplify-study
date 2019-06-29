@@ -6,11 +6,18 @@ export default {
     }
   },
   methods: {
+    onSave (e) {
+      this.$emit('save', this.value)
+    },
     onCancel (e) {
       this.$emit('cancel', this.value)
     },
-    onSave (e) {
-      this.$emit('save', this.value)
+    onDelete (e) {
+      if (!confirm('削除します。')) {
+        return
+      }
+
+      this.$emit('delete', this.value)
     }
   }
 }
@@ -24,7 +31,7 @@ export default {
           <v-form>
             <v-card>
               <v-toolbar flat>
-                <v-toolbar-title>社員情報登録</v-toolbar-title>
+                <v-toolbar-title>社員情報</v-toolbar-title>
               </v-toolbar>
 
               <v-container grid-list-md>
@@ -44,12 +51,15 @@ export default {
                 </v-layout>
 
                 <v-layout wrap>
+                  <v-flex xs12 sm4 md4 lg3 xl3 v-if="!!value.id">
+                    <v-btn @click="onDelete" block><v-icon left>remove</v-icon>削除</v-btn>
+                  </v-flex>
                   <v-spacer></v-spacer>
                   <v-flex xs12 sm4 md4 lg3 xl3>
                     <v-btn @click="onCancel" block><v-icon left>close</v-icon>キャンセル</v-btn>
                   </v-flex>
                   <v-flex xs12 sm4 md4 lg3 xl3>
-                    <v-btn @click="onSave" color="primary" block><v-icon dark left>check</v-icon>保存</v-btn>
+                    <v-btn @click="onSave" color="primary" block><v-icon left>check</v-icon>保存</v-btn>
                   </v-flex>
                 </v-layout>
               </v-container>

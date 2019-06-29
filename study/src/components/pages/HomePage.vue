@@ -1,5 +1,5 @@
 <script>
-import HomeTemplate from '../templates/HomeTemplate.vue'
+import HomeTemplate from '@/components/templates/HomeTemplate.vue'
 
 export default {
   components: {

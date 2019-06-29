@@ -20,6 +20,9 @@ export default {
     return {
       drawer: false
     }
+  },
+  created () {
+    this.$router.push({ path: '/home' })
   }
 }
 </script>

@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import AppLayout from '@/AppLayout.vue'
+import LoginPage from '@/components/pages/LoginPage.vue'
+import LogoutPage from '@/components/pages/LogoutPage.vue'
 import HomePage from '@/components/pages/HomePage.vue'
 import AboutPage from '@/components/pages/AboutPage.vue'
-import LoginPage from '@/components/pages/LoginPage.vue'
 import EmployeeAddPage from '@/components/pages/EmployeeAddPage.vue'
 import EmployeeListPage from '@/components/pages/EmployeeListPage.vue'
 
@@ -53,6 +54,11 @@ export const router = new Router({
       path: '/login',
       name: 'LoginPage',
       component: LoginPage
+    },
+    {
+      path: '/logout',
+      name: 'LogoutPage',
+      component: LogoutPage
     },
     {
       path: '/',

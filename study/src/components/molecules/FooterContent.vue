@@ -6,7 +6,7 @@ export default {
 <template>
   <v-footer dark app>
     <v-spacer></v-spacer>
-    <span class="white--text">&copy; 2019 LaravelVueTemplate</span>
+    <span class="white--text">&copy; 2019 StudyApps</span>
   </v-footer>
 </template>
 

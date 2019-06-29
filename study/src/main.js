@@ -8,12 +8,12 @@ import './registerServiceWorker'
 import Amplify from 'aws-amplify'
 import awsExports from './aws-exports'
 import { components } from 'aws-amplify-vue'
-import Uuid from 'vue-uuid';
+import Uuid from 'vue-uuid'
 
 Vue.config.productionTip = false
 
 Amplify.configure(awsExports)
-Vue.use(Uuid);
+Vue.use(Uuid)
 
 new Vue({
   router,

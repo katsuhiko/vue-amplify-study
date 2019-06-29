@@ -11,7 +11,7 @@ export default {
 <template>
   <v-toolbar dark fixed app>
     <v-toolbar-side-icon @click.stop="onOpen"></v-toolbar-side-icon>
-    <v-toolbar-title>LaravelVueTemplate</v-toolbar-title>
+    <v-toolbar-title>StudyApps</v-toolbar-title>
   </v-toolbar>
 </template>
 

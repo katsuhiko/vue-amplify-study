@@ -57,14 +57,20 @@ export default {
         itemValue: employee.employee_name
       }
 
-      if (createMode) {
-        await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
-        await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
-        await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
-      } else {
-        await API.graphql(graphqlOperation(updateStudyItem, { input: employeeObject }))
-        await API.graphql(graphqlOperation(updateStudyItem, { input: employeeNo }))
-        await API.graphql(graphqlOperation(updateStudyItem, { input: employeeName }))
+      try {
+        if (createMode) {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
+        } else {
+          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeObject }))
+          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeNo }))
+          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeName }))
+        }
+      } catch (e) {
+        console.log(e)
+        alert('保存に失敗しました。')
+        return
       }
 
       alert('保存しました。')
@@ -88,9 +94,15 @@ export default {
         itemType: 'employee_name'
       }
 
-      await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeObject }))
-      await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeNo }))
-      await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeName }))
+      try {
+        await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeObject }))
+        await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeNo }))
+        await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeName }))
+      } catch (e) {
+        console.log(e)
+        alert('削除に失敗しました。')
+        return
+      }
 
       alert('削除しました。')
 

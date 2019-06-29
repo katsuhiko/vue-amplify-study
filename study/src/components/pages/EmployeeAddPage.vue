@@ -1,7 +1,7 @@
 <script>
-import EmployeeAddTemplate from '../templates/EmployeeAddTemplate.vue'
+import EmployeeAddTemplate from '@/components/templates/EmployeeAddTemplate.vue'
 import { API, graphqlOperation } from 'aws-amplify'
-import { createStudyItem } from '../../graphql/mutations'
+import { createStudyItem } from '@/graphql/mutations'
 
 export default {
   components: {
@@ -20,11 +20,12 @@ export default {
       console.log(employee)
     },
     async onSave (employee) {
-      console.log('onSave')
-      console.log(employee)
-      console.log(employee.employee_no)
-
       const id = this.$uuid.v4()
+      const employeeObject = {
+        id: id,
+        itemType: 'employee_object',
+        itemValue: JSON.stringify(employee)
+      }
       const employeeNo = {
         id: id,
         itemType: 'employee_no',
@@ -35,6 +36,7 @@ export default {
         itemType: 'employee_name',
         itemValue: employee.employee_name
       }
+      await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
       await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
       await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
       alert('登録しました。')

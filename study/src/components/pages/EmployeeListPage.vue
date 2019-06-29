@@ -24,15 +24,18 @@ export default {
 
       res.data.listStudyItemsByType.items.forEach(item => {
         this.employees.push(JSON.parse(item.itemValue))
-      });
+      })
     },
     goAdd () {
-      this.$router.push({ path: '/employee-add' })
+      this.$router.push({ path: '/employees/add' })
+    },
+    goEdit (employee) {
+      this.$router.push({ path: '/employees/' + employee.id })
     }
   }
 }
 </script>
 
 <template>
-  <employee-list-template :employees="employees" @add="goAdd"></employee-list-template>
+  <employee-list-template :employees="employees" @add="goAdd" @edit="goEdit"></employee-list-template>
 </template>

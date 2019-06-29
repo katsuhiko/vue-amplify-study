@@ -63,12 +63,16 @@ export const router = new Router({
           component: HomePage
         },
         {
-          path: '/employee-add',
+          path: '/employees',
+          component: EmployeeListPage
+        },
+        {
+          path: '/employees/add',
           component: EmployeeAddPage
         },
         {
-          path: '/employee-list',
-          component: EmployeeListPage
+          path: '/employees/:id',
+          component: EmployeeAddPage
         },
         {
           path: '/about',

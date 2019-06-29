@@ -7,7 +7,7 @@ export default {
   },
   data () {
     return {
-      selected: '',
+      selected: null,
       search: '',
       headers: [
         { text: '', value: 'select', width: '50px', sortable: false },
@@ -17,21 +17,30 @@ export default {
     }
   },
   methods: {
-    isActiveRow (id) {
-      return this.selected === id
+    isActiveRow (employee) {
+      if (!this.selected) {
+        return false
+      }
+
+      return this.selected.id === employee.id
     },
-    selectRow (id) {
-      if (this.selected === id) {
-        this.selected = ''
+    selectRow (employee) {
+      if (this.selected && this.selected.id === employee.id) {
+        this.selected = null
       } else {
-        this.selected = id
+        this.selected = employee
       }
     },
     goAdd (e) {
       this.$emit('add', {})
     },
     goEdit (e) {
-      this.$emit('edit', this.value)
+      if (!this.selected) {
+        alert('行を選択してください。')
+        return
+      }
+
+      this.$emit('edit', this.selected)
     }
   }
 }
@@ -76,11 +85,11 @@ export default {
               :rows-per-page-items="[50, 100, 200]"
             >
               <template v-slot:items="props">
-                <tr :active="isActiveRow(props.item.id)" @click="selectRow(props.item.id)">
+                <tr :active="isActiveRow(props.item)" @click="selectRow(props.item)">
                   <td>
                     <v-checkbox
-                      :input-value="isActiveRow(props.item.id)"
-                      primary
+                      :input-value="isActiveRow(props.item)"
+                      color="primary"
                       hide-details
                     ></v-checkbox>
                   </td>

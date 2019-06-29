@@ -1,7 +1,8 @@
 <script>
 import EmployeeAddTemplate from '@/components/templates/EmployeeAddTemplate.vue'
 import { API, graphqlOperation } from 'aws-amplify'
-import { createStudyItem } from '@/graphql/mutations'
+import { createStudyItem, updateStudyItem } from '@/graphql/mutations'
+import { getStudyItem } from '@/graphql/queries'
 
 export default {
   components: {
@@ -16,12 +17,33 @@ export default {
       }
     }
   },
+  async created () {
+    if (!this.$route.params.id) {
+      return
+    }
+
+    await this.loadEmployee(this.$route.params.id)
+  },
   methods: {
+    async loadEmployee (id) {
+      const res = await API.graphql(graphqlOperation(getStudyItem, {
+        id: id,
+        itemType: 'employee_object'
+      }))
+      console.log(res)
+
+      this.employee = JSON.parse(res.data.getStudyItem.itemValue)
+    },
     onCancel (employee) {
-      this.$router.push({ path: '/employee-list' })
+      this.$router.push({ path: '/employees' })
     },
     async onSave (employee) {
-      employee.id = this.$uuid.v4()
+      let createMode = false
+      if (!employee.id) {
+        employee.id = this.$uuid.v4()
+        createMode = true
+      }
+
       const employeeObject = {
         id: employee.id,
         itemType: 'employee_object',
@@ -37,13 +59,20 @@ export default {
         itemType: 'employee_name',
         itemValue: employee.employee_name
       }
-      await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
-      await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
-      await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
 
-      alert('登録しました。')
+      if (createMode) {
+        await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
+        await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
+        await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
+      } else {
+        await API.graphql(graphqlOperation(updateStudyItem, { input: employeeObject }))
+        await API.graphql(graphqlOperation(updateStudyItem, { input: employeeNo }))
+        await API.graphql(graphqlOperation(updateStudyItem, { input: employeeName }))
+      }
 
-      this.$router.push({ path: '/employee-list' })
+      alert('保存しました。')
+
+      this.$router.push({ path: '/employees' })
     }
   }
 }

@@ -1,5 +1,5 @@
 <script>
-import AboutTemplate from '../templates/AboutTemplate.vue'
+import AboutTemplate from '@/components/templates/AboutTemplate.vue'
 
 export default {
   components: {

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import HeaderContent from './components/molecules/HeaderContent.vue'
-import FooterContent from './components/molecules/FooterContent.vue'
+import HeaderContent from '@/components/molecules/HeaderContent.vue'
+import FooterContent from '@/components/molecules/FooterContent.vue'
 
 export default {
   name: 'App',

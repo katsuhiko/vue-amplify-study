@@ -1,5 +1,5 @@
 <script>
-import TaskAddTemplate from '../templates/TaskAddTemplate.vue'
+import TaskAddTemplate from '@/components/templates/TaskAddTemplate.vue'
 
 export default {
   components: {

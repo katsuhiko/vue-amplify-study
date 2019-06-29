@@ -34,7 +34,7 @@ export default {
     </v-list>
     <v-list dense>
       <v-divider></v-divider>
-      <v-list-tile to="/">
+      <v-list-tile to="/home">
         <v-list-tile-action>
           <v-icon>home</v-icon>
         </v-list-tile-action>
@@ -56,6 +56,11 @@ export default {
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>About</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+      <v-list-tile>
+        <v-list-tile-content>
+          <amplify-sign-out></amplify-sign-out>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>

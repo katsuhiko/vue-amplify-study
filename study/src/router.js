@@ -56,14 +56,13 @@ export const router = new Router({
       component: LoginPage
     },
     {
-      path: '/logout',
-      name: 'LogoutPage',
-      component: LogoutPage
-    },
-    {
       path: '/',
       component: AppLayout,
       children: [
+        {
+          path: '/logout',
+          component: LogoutPage
+        },
         {
           path: '/home',
           component: HomePage

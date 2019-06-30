@@ -12,7 +12,8 @@ export default {
       headers: [
         { text: '', value: 'select', width: '50px', sortable: false },
         { text: '社員番号', value: 'employee_no', width: '100px' },
-        { text: '名前', value: 'employee_name' }
+        { text: '名前', value: 'employee_name', width: '200px' },
+        { text: '備考', value: 'employee_remarks' }
       ]
     }
   },
@@ -95,6 +96,7 @@ export default {
                   </td>
                   <td class="text-xs-center">{{ props.item.employee_no }}</td>
                   <td>{{ props.item.employee_name }}</td>
+                  <td>{{ props.item.employee_remarks }}</td>
                 </tr>
               </template>
             </v-data-table>

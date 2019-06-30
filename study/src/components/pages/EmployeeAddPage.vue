@@ -13,8 +13,10 @@ export default {
       employee: {
         id: '',
         employee_no: '',
-        employee_name: ''
-      }
+        employee_name: '',
+        employee_remarks: ''
+      },
+      beforeEmployee: {}
     }
   },
   async created () {
@@ -32,13 +34,12 @@ export default {
       }))
       console.log(res)
 
-      this.employee = JSON.parse(res.data.getStudyItem.itemValue)
+      this.beforeEmployee = JSON.parse(res.data.getStudyItem.itemValue)
+      this.employee = Object.assign(this.employee, this.beforeEmployee)
     },
     async onSave (employee) {
-      let createMode = false
       if (!employee.id) {
         employee.id = this.$uuid.v4()
-        createMode = true
       }
 
       const employeeObject = {
@@ -56,16 +57,32 @@ export default {
         itemType: 'employee_name',
         itemValue: employee.employee_name
       }
+      const employeeRemarks = {
+        id: employee.id,
+        itemType: 'employee_remarks',
+        itemValue: employee.employee_remarks
+      }
 
       try {
-        if (createMode) {
+        if (!this.beforeEmployee.id) {
           await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
         } else {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeObject }))
+        }
+        if (!this.beforeEmployee.employee_no) {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
+        } else {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeNo }))
+        }
+        if (!this.beforeEmployee.employee_name) {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
+        } else {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeName }))
+        }
+        if (!this.beforeEmployee.employee_remarks) {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeRemarks }))
+        } else {
+          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeRemarks }))
         }
       } catch (e) {
         console.log(e)

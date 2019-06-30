@@ -48,6 +48,12 @@ export default {
                       v-model="value.employee_name"
                     ></v-text-field>
                   </v-flex>
+                  <v-flex xs12 sm12 md12>
+                    <v-textarea
+                      label="備考"
+                      v-model="value.employee_remarks"
+                    ></v-textarea>
+                  </v-flex>
                 </v-layout>
 
                 <v-layout wrap>

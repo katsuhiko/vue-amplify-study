@@ -22,6 +22,7 @@ export default {
     }
   },
   created () {
+    // root はレイアウト表示のみなので、ホームへ飛ばす
     if (this.$route.path === '/') {
       this.$router.push({ path: '/home' })
     }

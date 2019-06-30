@@ -13,16 +13,18 @@ storiesOf('templates/employee-list-template', module)
       for (let i = 0; i < 123; i++) {
         employees.push(
           {
-            id: 1000000 + i,
-            employee_no: '1234',
-            employee_name: '広島太郎'
+            employeeId: 1000000 + i,
+            employeeNo: '1234',
+            employeeName: '広島太郎',
+            employeeRemarks: '備考です。'
           }
         )
         employees.push(
           {
-            id: 2000000 + i,
-            employee_no: '3456',
-            employee_name: 'テスト次郎'
+            employeeId: 2000000 + i,
+            employeeNo: '3456',
+            employeeName: 'テスト次郎',
+            employeeRemarks: 'サンプルです。'
           }
         )
       }

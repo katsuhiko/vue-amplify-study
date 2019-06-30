@@ -11,9 +11,10 @@ storiesOf('templates/employee-add-template', module)
     data () {
       return {
         employee: {
-          id: '',
-          employee_no: '',
-          employee_name: ''
+          employeeId: '',
+          employeeNo: '',
+          employeeName: '',
+          employeeRemarks: ''
         }
       }
     },
@@ -29,9 +30,10 @@ storiesOf('templates/employee-add-template', module)
     data () {
       return {
         employee: {
-          id: 'EMP1',
-          employee_no: '1234',
-          employee_name: '広島太郎'
+          employeeId: 'EMP1',
+          employeeNo: '1234',
+          employeeName: '広島太郎',
+          employeeRemarks: '備考です。'
         }
       }
     },

@@ -76,7 +76,7 @@ export const router = new Router({
           component: EmployeeAddPage
         },
         {
-          path: '/employees/:id',
+          path: '/employees/:employeeId',
           component: EmployeeAddPage
         },
         {

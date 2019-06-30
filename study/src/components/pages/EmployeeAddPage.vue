@@ -3,6 +3,7 @@ import EmployeeAddTemplate from '@/components/templates/EmployeeAddTemplate.vue'
 import { API, graphqlOperation } from 'aws-amplify'
 import { createStudyItem, updateStudyItem, deleteStudyItem } from '@/graphql/mutations'
 import { getStudyItem } from '@/graphql/queries'
+import { toUpdateModel, updateModel, toDeleteModel, deleteModel } from '@/graphqlUtils'
 
 export default {
   components: {
@@ -11,7 +12,7 @@ export default {
   data () {
     return {
       employee: {
-        id: '',
+        employeeId: '',
         employeeNo: '',
         employeeName: '',
         employeeRemarks: ''
@@ -20,17 +21,17 @@ export default {
     }
   },
   async created () {
-    if (!this.$route.params.id) {
+    if (!this.$route.params.employeeId) {
       return
     }
 
-    await this.loadEmployee(this.$route.params.id)
+    await this.loadEmployee(this.$route.params.employeeId)
   },
   methods: {
-    async loadEmployee (id) {
+    async loadEmployee (employeeId) {
       const res = await API.graphql(graphqlOperation(getStudyItem, {
-        id: id,
-        itemType: 'employeeObject'
+        id: employeeId,
+        itemType: 'employeeId'
       }))
       console.log(res)
 
@@ -38,58 +39,18 @@ export default {
       this.employee = Object.assign(this.employee, this.beforeEmployee)
     },
     async onSave (employee) {
-      if (!employee.id) {
-        employee.id = this.$uuid.v4()
+      if (!employee.employeeId) {
+        employee.employeeId = this.$uuid.v4()
       }
 
-      const employeeObject = {
-        id: employee.id,
-        itemType: 'employeeObject',
-        itemValue: JSON.stringify(employee)
-      }
-      const employeeNo = {
-        id: employee.id,
-        itemType: 'employeeNo',
-        itemValue: employee.employeeNo
-      }
-      const employeeName = {
-        id: employee.id,
-        itemType: 'employeeName',
-        itemValue: employee.employeeName
-      }
-      const employeeRemarks = {
-        id: employee.id,
-        itemType: 'employeeRemarks',
-        itemValue: !employee.employeeRemarks ? ' ' : employee.employeeRemarks
-      }
-
+      const model = toUpdateModel(employee, 'employeeId')
       try {
-        if ('id' in this.beforeEmployee) {
-          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeObject }))
-        } else {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
-        }
-        if ('employeeNo' in this.beforeEmployee) {
-          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeNo }))
-        } else {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
-        }
-        if ('employeeName' in this.beforeEmployee) {
-          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeName }))
-        } else {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
-        }
-        if ('employeeRemarks' in this.beforeEmployee) {
-          await API.graphql(graphqlOperation(updateStudyItem, { input: employeeRemarks }))
-        } else {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeRemarks }))
-        }
+        await updateModel(model, this.beforeEmployee, createStudyItem, updateStudyItem)
       } catch (e) {
         console.log(e)
         alert('保存に失敗しました。')
         return
       }
-
       alert('保存しました。')
 
       this.$router.push({ path: '/employees' })
@@ -98,29 +59,14 @@ export default {
       this.$router.push({ path: '/employees' })
     },
     async onDelete (employee) {
-      const employeeObject = {
-        id: employee.id,
-        itemType: 'employeeObject'
-      }
-      const employeeNo = {
-        id: employee.id,
-        itemType: 'employeeNo'
-      }
-      const employeeName = {
-        id: employee.id,
-        itemType: 'employeeName'
-      }
-
+      const model = toDeleteModel(employee, 'employeeId')
       try {
-        await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeObject }))
-        await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeNo }))
-        await API.graphql(graphqlOperation(deleteStudyItem, { input: employeeName }))
+        await deleteModel(model, this.beforeEmployee, deleteStudyItem)
       } catch (e) {
         console.log(e)
         alert('削除に失敗しました。')
         return
       }
-
       alert('削除しました。')
 
       this.$router.push({ path: '/employees' })

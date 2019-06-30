@@ -23,10 +23,10 @@ export default {
         return false
       }
 
-      return this.selected.id === employee.id
+      return this.selected.employeeId === employee.employeeId
     },
     selectRow (employee) {
-      if (this.selected && this.selected.id === employee.id) {
+      if (this.selected && this.selected.employeeId === employee.employeeId) {
         this.selected = null
       } else {
         this.selected = employee

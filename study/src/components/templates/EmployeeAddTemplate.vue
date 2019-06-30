@@ -57,7 +57,7 @@ export default {
                 </v-layout>
 
                 <v-layout wrap>
-                  <v-flex xs12 sm4 md4 lg3 xl3 v-if="!!value.id">
+                  <v-flex xs12 sm4 md4 lg3 xl3 v-if="!!value.employeeId">
                     <v-btn @click="onDelete" block><v-icon left>remove</v-icon>削除</v-btn>
                   </v-flex>
                   <v-spacer></v-spacer>

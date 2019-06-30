@@ -18,7 +18,7 @@ export default {
   methods: {
     async loadEmployees () {
       const res = await API.graphql(graphqlOperation(listStudyItemsByType, {
-        itemType: 'employeeObject'
+        itemType: 'employeeId'
       }))
       console.log(res)
 
@@ -30,7 +30,7 @@ export default {
       this.$router.push({ path: '/employees/add' })
     },
     goEdit (employee) {
-      this.$router.push({ path: '/employees/' + employee.id })
+      this.$router.push({ path: '/employees/' + employee.employeeId })
     }
   }
 }

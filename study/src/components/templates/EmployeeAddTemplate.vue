@@ -39,19 +39,19 @@ export default {
                   <v-flex xs12 sm6 md6>
                     <v-text-field
                       label="社員番号"
-                      v-model="value.employee_no"
+                      v-model="value.employeeNo"
                     ></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md6>
                     <v-text-field
                       label="名前"
-                      v-model="value.employee_name"
+                      v-model="value.employeeName"
                     ></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm12 md12>
                     <v-textarea
                       label="備考"
-                      v-model="value.employee_remarks"
+                      v-model="value.employeeRemarks"
                     ></v-textarea>
                   </v-flex>
                 </v-layout>

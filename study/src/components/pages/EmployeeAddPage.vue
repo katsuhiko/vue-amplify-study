@@ -12,9 +12,9 @@ export default {
     return {
       employee: {
         id: '',
-        employee_no: '',
-        employee_name: '',
-        employee_remarks: ''
+        employeeNo: '',
+        employeeName: '',
+        employeeRemarks: ''
       },
       beforeEmployee: {}
     }
@@ -30,7 +30,7 @@ export default {
     async loadEmployee (id) {
       const res = await API.graphql(graphqlOperation(getStudyItem, {
         id: id,
-        itemType: 'employee_object'
+        itemType: 'employeeObject'
       }))
       console.log(res)
 
@@ -44,45 +44,45 @@ export default {
 
       const employeeObject = {
         id: employee.id,
-        itemType: 'employee_object',
+        itemType: 'employeeObject',
         itemValue: JSON.stringify(employee)
       }
       const employeeNo = {
         id: employee.id,
-        itemType: 'employee_no',
-        itemValue: employee.employee_no
+        itemType: 'employeeNo',
+        itemValue: employee.employeeNo
       }
       const employeeName = {
         id: employee.id,
-        itemType: 'employee_name',
-        itemValue: employee.employee_name
+        itemType: 'employeeName',
+        itemValue: employee.employeeName
       }
       const employeeRemarks = {
         id: employee.id,
-        itemType: 'employee_remarks',
-        itemValue: employee.employee_remarks
+        itemType: 'employeeRemarks',
+        itemValue: !employee.employeeRemarks ? ' ' : employee.employeeRemarks
       }
 
       try {
-        if (!this.beforeEmployee.id) {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
-        } else {
+        if ('id' in this.beforeEmployee) {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeObject }))
-        }
-        if (!this.beforeEmployee.employee_no) {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
         } else {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeObject }))
+        }
+        if ('employeeNo' in this.beforeEmployee) {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeNo }))
-        }
-        if (!this.beforeEmployee.employee_name) {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
         } else {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeNo }))
+        }
+        if ('employeeName' in this.beforeEmployee) {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeName }))
-        }
-        if (!this.beforeEmployee.employee_remarks) {
-          await API.graphql(graphqlOperation(createStudyItem, { input: employeeRemarks }))
         } else {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeName }))
+        }
+        if ('employeeRemarks' in this.beforeEmployee) {
           await API.graphql(graphqlOperation(updateStudyItem, { input: employeeRemarks }))
+        } else {
+          await API.graphql(graphqlOperation(createStudyItem, { input: employeeRemarks }))
         }
       } catch (e) {
         console.log(e)
@@ -100,15 +100,15 @@ export default {
     async onDelete (employee) {
       const employeeObject = {
         id: employee.id,
-        itemType: 'employee_object'
+        itemType: 'employeeObject'
       }
       const employeeNo = {
         id: employee.id,
-        itemType: 'employee_no'
+        itemType: 'employeeNo'
       }
       const employeeName = {
         id: employee.id,
-        itemType: 'employee_name'
+        itemType: 'employeeName'
       }
 
       try {

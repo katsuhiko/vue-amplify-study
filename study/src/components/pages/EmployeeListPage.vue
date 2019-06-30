@@ -18,7 +18,7 @@ export default {
   methods: {
     async loadEmployees () {
       const res = await API.graphql(graphqlOperation(listStudyItemsByType, {
-        itemType: 'employee_object'
+        itemType: 'employeeObject'
       }))
       console.log(res)
 

@@ -11,9 +11,9 @@ export default {
       search: '',
       headers: [
         { text: '', value: 'select', width: '50px', sortable: false },
-        { text: '社員番号', value: 'employee_no', width: '100px' },
-        { text: '名前', value: 'employee_name', width: '200px' },
-        { text: '備考', value: 'employee_remarks' }
+        { text: '社員番号', value: 'employeeNo', width: '100px' },
+        { text: '名前', value: 'employeeName', width: '200px' },
+        { text: '備考', value: 'employeeRemarks' }
       ]
     }
   },
@@ -94,9 +94,9 @@ export default {
                       hide-details
                     ></v-checkbox>
                   </td>
-                  <td class="text-xs-center">{{ props.item.employee_no }}</td>
-                  <td>{{ props.item.employee_name }}</td>
-                  <td>{{ props.item.employee_remarks }}</td>
+                  <td class="text-xs-center">{{ props.item.employeeNo }}</td>
+                  <td>{{ props.item.employeeName }}</td>
+                  <td>{{ props.item.employeeRemarks }}</td>
                 </tr>
               </template>
             </v-data-table>

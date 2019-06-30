@@ -6,6 +6,9 @@ export default {
     }
   },
   methods: {
+    isUpdateMode () {
+      return !!this.value.employeeId
+    },
     onSave (e) {
       this.$emit('save', this.value)
     },
@@ -63,7 +66,7 @@ export default {
                 </v-layout>
 
                 <v-layout wrap>
-                  <v-flex xs12 sm4 md4 lg3 xl3 v-if="!!value.employeeId">
+                  <v-flex xs12 sm4 md4 lg3 xl3 v-if="isUpdateMode()">
                     <v-btn @click="onDelete" block><v-icon left>remove</v-icon>削除</v-btn>
                   </v-flex>
                   <v-spacer></v-spacer>

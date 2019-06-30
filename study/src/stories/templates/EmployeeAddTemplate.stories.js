@@ -5,7 +5,7 @@ import EmployeeAddTemplate from '../../components/templates/EmployeeAddTemplate.
 
 storiesOf('templates/employee-add-template', module)
   .addDecorator(layout)
-  .add('テンプレート', () => ({
+  .add('テンプレート登録', () => ({
     components: { EmployeeAddTemplate },
     template: `<employee-add-template v-model="employee" @save="onSave" @cancel="onCancel" @delete="onDelete"></employee-add-template>`,
     data () {

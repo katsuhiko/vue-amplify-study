@@ -9,6 +9,12 @@ docker run --rm -it -v $(pwd)/study:/app -w /app node:10.16 npm install
 docker-compose up -d
 ```
 
+```
+docker exec -it cli /bin/sh
+cd study
+amplify env checkout dev
+```
+
 
 ## 各サイトへのアクセス
 

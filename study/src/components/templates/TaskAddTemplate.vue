@@ -1,31 +1,26 @@
 <script>
 export default {
+  props: ['value'],
   data () {
     return {
-      customers: [
-        { id: '1', customer_name: '株式会社〇〇〇〇〇〇〇〇1' },
-        { id: '2', customer_name: '株式会社〇〇〇〇〇〇〇〇2' }
-      ],
-      terms: [
-        { id: '1', term_name: '2019' },
-        { id: '2', term_name: '2018' }
-      ],
-      orderTypes: [
-        { id: '1', order_name: '未受注' },
-        { id: '2', order_name: '受注済' }
-      ],
-      allocTypes: [
-        { id: '1', alloc_name: '未割当' },
-        { id: '2', alloc_name: '割当済' }
-      ]
     }
   },
   methods: {
-    onCancel () {
-      this.$emit('cancel', true)
+    isUpdateMode () {
+      return !!this.value.taskId
     },
-    onSave () {
-      this.$emit('save', true)
+    onSave (e) {
+      this.$emit('save', this.value)
+    },
+    onCancel (e) {
+      this.$emit('cancel', this.value)
+    },
+    onDelete (e) {
+      if (!confirm('削除します。')) {
+        return
+      }
+
+      this.$emit('delete', this.value)
     }
   }
 }
@@ -46,94 +41,40 @@ export default {
                 <v-layout wrap>
                   <v-flex xs12 sm6 md6>
                     <v-text-field
-                      label="No."
+                      label="案件No."
+                      v-model="value.taskNo"
+                      maxlength="10"
+                      counter="10"
                     ></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md6>
-                    <v-select
-                      :items="terms"
-                      item-text="term_name"
-                      item-value="id"
-                      label="年度"
-                      clearable
-                    ></v-select>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-select
-                      :items="customers"
-                      item-text="customer_name"
-                      item-value="id"
-                      label="顧客名"
-                      clearable
-                    ></v-select>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      label="時期"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm12 md12>
                     <v-text-field
                       label="案件名"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-select
-                      :items="orderTypes"
-                      item-text="order_name"
-                      item-value="id"
-                      label="受注区分"
-                      clearable
-                    ></v-select>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-select
-                      :items="allocTypes"
-                      item-text="alloc_name"
-                      item-value="id"
-                      label="割当区分"
-                      clearable
-                    ></v-select>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      label="工数(人月)"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      label="配分工数(人月)"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      label="受注金額"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      label="配分受注金額"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md6>
-                    <v-text-field
-                      label="受注見込金額"
+                      v-model="value.taskName"
+                      maxlength="50"
+                      counter="50"
                     ></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm12 md12>
                     <v-textarea
                       label="備考"
+                      v-model="value.taskRemarks"
+                      maxlength="250"
+                      counter="250"
                     ></v-textarea>
                   </v-flex>
                 </v-layout>
 
                 <v-layout wrap>
+                  <v-flex xs12 sm4 md4 lg3 xl3 v-if="isUpdateMode()">
+                    <v-btn @click="onDelete" block><v-icon left>remove</v-icon>削除</v-btn>
+                  </v-flex>
                   <v-spacer></v-spacer>
                   <v-flex xs12 sm4 md4 lg3 xl3>
-                    <v-btn @click="onCancel" dark block><v-icon dark left>remove_circle</v-icon>キャンセル</v-btn>
+                    <v-btn @click="onCancel" block><v-icon left>close</v-icon>キャンセル</v-btn>
                   </v-flex>
                   <v-flex xs12 sm4 md4 lg3 xl3>
-                    <v-btn @click="onSave" color="primary" dark block><v-icon dark left>check_circle</v-icon>保存</v-btn>
+                    <v-btn @click="onSave" color="primary" block><v-icon left>check</v-icon>保存</v-btn>
                   </v-flex>
                 </v-layout>
               </v-container>

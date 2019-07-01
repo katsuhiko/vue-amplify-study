@@ -1,6 +1,4 @@
 <script>
-import { moneyFormat, moonFormat } from '../../filters.js'
-
 export default {
   props: {
     tasks: {
@@ -9,28 +7,42 @@ export default {
   },
   data () {
     return {
+      selected: null,
+      search: '',
       headers: [
-        { text: 'No.', value: 'task_no' },
-        { text: '顧客名　　　　　　　　　', value: 'customer_name' },
-        { text: '案件名　　　　　　　　　', value: 'task_name' },
-        { text: '受注区分', value: 'order_type_name' },
-        { text: '割当区分', value: 'alloc_type_name' },
-        { text: '時期　　　　', value: 'task_period' },
-        { text: '工数(人月)', value: 'task_moon' },
-        { text: '割当工数(人月)', value: 'alloc_task_moon' },
-        { text: '受注額', value: 'order_amount' },
-        { text: '割当受注額', value: 'alloc_order_amount' },
-        { text: '割当受注見込額', value: 'est_order_amount' },
-        { text: '実績額', value: 'actual_amount' },
-        { text: '外注費', value: 'out_amount' },
-        { text: '利益', value: 'profit_amount' },
-        { text: '見込利益', value: 'est_profit_amount' },
-        { text: '備考　　　　　　　　　　　　　　　　　　　　', value: 'remarks' }
+        { text: '', value: 'select', width: '50px', sortable: false },
+        { text: '案件No.', value: 'taskNo', width: '100px' },
+        { text: '案件名', value: 'taskName', width: '200px' },
+        { text: '備考', value: 'taskRemarks' }
       ]
     }
   },
-  filters: {
-    moneyFormat, moonFormat
+  methods: {
+    isActiveRow (task) {
+      if (!this.selected) {
+        return false
+      }
+
+      return this.selected.taskId === task.taskId
+    },
+    selectRow (task) {
+      if (this.selected && this.selected.taskId === task.taskId) {
+        this.selected = null
+      } else {
+        this.selected = task
+      }
+    },
+    goAdd (e) {
+      this.$emit('add', {})
+    },
+    goEdit (e) {
+      if (!this.selected) {
+        alert('行を選択してください。')
+        return
+      }
+
+      this.$emit('edit', this.selected)
+    }
   }
 }
 </script>
@@ -40,31 +52,55 @@ export default {
     <v-container fluid fill-height>
       <v-layout row>
         <v-flex md12>
-          <v-data-table
-            :headers="headers"
-            :items="tasks"
-            class="elevation-1"
-            :rows-per-page-items="[50, 100, 200]"
-          >
-            <template v-slot:items="props">
-              <td class="text-xs-center">{{ props.item.task_no }}</td>
-              <td>{{ props.item.customer_name }}</td>
-              <td>{{ props.item.task_name }}</td>
-              <td class="text-xs-center">{{ props.item.order_type_name }}</td>
-              <td class="text-xs-center">{{ props.item.alloc_type_name }}</td>
-              <td>{{ props.item.task_period }}</td>
-              <td class="text-xs-right">{{ props.item.task_moon | moonFormat }}</td>
-              <td class="text-xs-right">{{ props.item.alloc_task_moon | moonFormat }}</td>
-              <td class="text-xs-right">{{ props.item.order_amount | moneyFormat }}</td>
-              <td class="text-xs-right">{{ props.item.alloc_order_amount | moneyFormat }}</td>
-              <td class="text-xs-right">{{ props.item.est_order_amount | moneyFormat }}</td>
-              <td class="text-xs-right">{{ props.item.actual_amount | moneyFormat }}</td>
-              <td class="text-xs-right">{{ props.item.out_amount | moneyFormat }}</td>
-              <td class="text-xs-right">{{ props.item.profit_amount | moneyFormat }}</td>
-              <td class="text-xs-right">{{ props.item.est_profit_amount | moneyFormat }}</td>
-              <td>{{ props.item.remarks }}</td>
-            </template>
-          </v-data-table>
+          <v-card>
+            <v-toolbar flat>
+              <v-toolbar-title>案件情報</v-toolbar-title>
+            </v-toolbar>
+
+            <v-container fluid grid-list-md>
+              <v-layout wrap>
+                <v-flex xs5 sm4 md2 lg2 xl1>
+                  <v-btn @click="goAdd" block><v-icon left>add</v-icon>新規登録</v-btn>
+                </v-flex>
+                <v-flex xs5 sm4 md2 lg2 xl1>
+                  <v-btn @click="goEdit" block><v-icon left>edit</v-icon>編集</v-btn>
+                </v-flex>
+                <v-spacer></v-spacer>
+                <v-flex xs12 sm12 md6 lg4 xl4>
+                  <v-text-field
+                    v-model="search"
+                    append-icon="search"
+                    label="ワード検索"
+                    single-line
+                    hide-details
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+
+            <v-data-table
+              :headers="headers"
+              :items="tasks"
+              :search="search"
+              class="elevation-1"
+              :rows-per-page-items="[50, 100, 200]"
+            >
+              <template v-slot:items="props">
+                <tr :active="isActiveRow(props.item)" @click="selectRow(props.item)">
+                  <td>
+                    <v-checkbox
+                      :input-value="isActiveRow(props.item)"
+                      color="primary"
+                      hide-details
+                    ></v-checkbox>
+                  </td>
+                  <td class="text-xs-center">{{ props.item.taskNo }}</td>
+                  <td>{{ props.item.taskName }}</td>
+                  <td>{{ props.item.taskRemarks }}</td>
+                </tr>
+              </template>
+            </v-data-table>
+          </v-card>
         </v-flex>
       </v-layout>
     </v-container>

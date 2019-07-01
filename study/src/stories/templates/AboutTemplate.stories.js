@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue'
-import layout from '../../components/templates/StoryTemplateLayout'
-import AboutTemplate from '../../components/templates/AboutTemplate.vue'
+import layout from '@/components/templates/StoryTemplateLayout'
+import AboutTemplate from '@/components/templates/AboutTemplate.vue'
 
 storiesOf('templates/about-template', module)
   .addDecorator(layout)

@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
-import MenuContent from '../../components/molecules/MenuContent.vue'
+import MenuContent from '@/components/molecules/MenuContent.vue'
 
 storiesOf('molecules/menu-content', module)
   .add('メニュー', () => ({

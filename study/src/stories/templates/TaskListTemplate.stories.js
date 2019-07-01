@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
-import layout from '../../components/templates/StoryTemplateLayout'
-import TaskListTemplate from '../../components/templates/TaskListTemplate.vue'
+import layout from '@/components/templates/StoryTemplateLayout'
+import TaskListTemplate from '@/components/templates/TaskListTemplate.vue'
 
 storiesOf('templates/task-list-template', module)
   .addDecorator(layout)

@@ -1,5 +1,5 @@
-import HeaderContent from '../../components/molecules/HeaderContent.vue'
-import FooterContent from '../../components/molecules/FooterContent.vue'
+import HeaderContent from '@/components/molecules/HeaderContent.vue'
+import FooterContent from '@/components/molecules/FooterContent.vue'
 
 const layout = (() => ({
   components: { HeaderContent, FooterContent },

@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/vue'
-import FooterContent from '../../components/molecules/FooterContent.vue'
+import FooterContent from '@/components/molecules/FooterContent.vue'
 
 storiesOf('molecules/footer-content', module)
   .add('フッター', () => ({

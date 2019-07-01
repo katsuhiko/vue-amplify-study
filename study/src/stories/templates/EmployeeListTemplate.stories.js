@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
-import layout from '../../components/templates/StoryTemplateLayout'
-import EmployeeListTemplate from '../../components/templates/EmployeeListTemplate.vue'
+import layout from '@/components/templates/StoryTemplateLayout'
+import EmployeeListTemplate from '@/components/templates/EmployeeListTemplate.vue'
 
 storiesOf('templates/employee-list-template', module)
   .addDecorator(layout)

@@ -8,6 +8,8 @@ import HomePage from '@/components/pages/HomePage.vue'
 import AboutPage from '@/components/pages/AboutPage.vue'
 import EmployeeAddPage from '@/components/pages/EmployeeAddPage.vue'
 import EmployeeListPage from '@/components/pages/EmployeeListPage.vue'
+import TaskAddPage from '@/components/pages/TaskAddPage.vue'
+import TaskListPage from '@/components/pages/TaskListPage.vue'
 
 import { AmplifyEventBus, AmplifyPlugin } from 'aws-amplify-vue'
 import * as AmplifyModules from 'aws-amplify'
@@ -78,6 +80,18 @@ export const router = new Router({
         {
           path: '/employees/:employeeId',
           component: EmployeeAddPage
+        },
+        {
+          path: '/tasks',
+          component: TaskListPage
+        },
+        {
+          path: '/tasks/add',
+          component: TaskAddPage
+        },
+        {
+          path: '/tasks/:taskId',
+          component: TaskAddPage
         },
         {
           path: '/about',

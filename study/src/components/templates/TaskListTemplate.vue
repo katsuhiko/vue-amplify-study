@@ -12,7 +12,7 @@ export default {
       headers: [
         { text: '', value: 'select', width: '50px', sortable: false },
         { text: '案件No.', value: 'taskNo', width: '100px' },
-        { text: '案件名', value: 'taskName', width: '200px' },
+        { text: '案件名', value: 'taskName', width: '300px' },
         { text: '備考', value: 'taskRemarks' }
       ]
     }
